@@ -17,12 +17,14 @@
     <button id="enter">送出</button>
     <div>您的BMI值為<span id="bmiValue"></span>，<span id="result"></span></div>
     <script>
+      // 抓取HTML中的元素
       const height = document.getElementById("height");
       const weight = document.getElementById("weight");
       const enter = document.getElementById("enter");
       const bmiValue = document.getElementById("bmiValue");
       const result = document.getElementById("result");
 
+      // 事件聆聽
       enter.addEventListener("click", ()=>{
         let bmiResult = translateBMI(weight.value, height.value);
         bmiValue.innerText = bmiResult;
@@ -30,6 +32,7 @@
         result.innerText = res;
       });
 
+      // 轉換 BMI數值 .pow() => 求平方值； .floor() => 求數字的最大整數
       function translateBMI(a, b) {
         let bmi = Math.floor((a / Math.pow(b / 100, 2)) * 100) / 100;
         return bmi;

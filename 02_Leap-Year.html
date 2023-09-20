@@ -24,6 +24,7 @@
 
       function checkYear(a) {
         let res = `${a}為平年`;
+        // % => 求於數
         if (a % 400 === 0 || (a % 4 === 0 && a % 100 > 0)) {
           res = `${a}為閏年`;
         }
