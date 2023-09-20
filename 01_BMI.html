@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI</title>
+  </head>
+  <body>
+    <h1>讓使用者可以輸入自己的體重及身高，根據算出來的BMI値顯示下列訊息</h1>
+    <hr />
+    <label
+      >身高（公分）：<input type="number" name="userHeight" id="height"
+    /></label>
+    <label
+      >體重（公斤）：<input type="number" name="userWeight" id="weight"
+    /></label>
+    <button id="enter">送出</button>
+    <div>您的BMI值為<span id="bmiValue"></span>，<span id="result"></span></div>
+    <script>
+      const height = document.getElementById("height");
+      const weight = document.getElementById("weight");
+      const enter = document.getElementById("enter");
+      const bmiValue = document.getElementById("bmiValue");
+      const result = document.getElementById("result");
+
+      enter.addEventListener("click", ()=>{
+        let bmiResult = translateBMI(weight.value, height.value);
+        bmiValue.innerText = bmiResult;
+        let res = isOverWeight(bmiResult);
+        result.innerText = res;
+      });
+
+      function translateBMI(a, b) {
+        let bmi = Math.floor((a / Math.pow(b / 100, 2)) * 100) / 100;
+        return bmi;
+      }
+
+      function isOverWeight(a) {
+        let status = "";
+        if (a < 18.5) {
+          status = "過輕";
+        } else if (a >= 18.5 && a < 24) {
+          status = "正常";
+        } else if (a >= 24 && a < 27) {
+          status = "過重";
+        } else if (a >= 27 && a < 30) {
+          status = "輕度肥胖";
+        } else if (a >= 30 && a < 35) {
+          status = "中度肥胖";
+        } else {
+          status = "重度肥胖";
+        }
+        return status;
+      }
+
+      // 可以改寫成三元運算子寫法
+    </script>
+  </body>
+</html>

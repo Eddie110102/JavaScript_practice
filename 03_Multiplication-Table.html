@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>九九乘法表</title>
+    <style>
+      #result {
+        display: inline-flex;
+        border: 1px solid black;
+      }
+      #result > p {
+        padding: 10px;
+        margin: 0;
+      }
+      #result > p > p{
+        margin: 5px 0px;
+      }
+      #result > p:not(:last-child) {
+        border-right: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>請劃出九九乘法表</h1>
+    <hr />
+
+    <div id="result"></div>
+    <script>
+      const result = document.getElementById("result");
+
+      for (let i = 2; i < 10; i++) {
+        result.appendChild(document.createElement("p"));
+        for (let j = 1; j < 10; j++) {
+          let target = result.children;
+          target[i - 2].innerHTML += `<p>${i}x${j}=${i * j}<p>`;
+        }
+      }
+    </script>
+  </body>
+</html>
