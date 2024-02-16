@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carosuel 輪播牆</title>
+    <link rel="stylesheet" href="./nav.css">
+    <style>
+      .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .slider {
+        width: 600px;
+        height: 300px;
+        border: 1px solid black;
+        overflow: hidden;
+      }
+      .sliderCollect {
+        width: inherit;
+        height: inherit;
+        display: flex;
+        transition: 0.4s;
+      }
+      .slider img {
+        min-width: 600px;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      .dotbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border: 1px solid gray;
+        border-radius: 50%;
+        margin: 10px;
+        cursor: pointer;
+      }
+      .dot.checked {
+        background-color: gray;
+      }
+
+      /* 按鈕 */
+      .btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+        margin: 30px;
+        cursor: pointer;
+      }
+      .btn img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      #left {
+        order: -10;
+      }
+    </style>
+  </head>
+  <body>
+    <nav></nav>
+    <div class="box">
+      <div class="slider">
+        <div class="sliderCollect"></div>
+      </div>
+      <div class="btn" id="left"><img src="./prev.svg" alt="" /></div>
+      <div class="btn" id="right"><img src="./next.svg" alt="" /></div>
+    </div>
+    <div class="dotbox"></div>
+    <script>
+      let page = 0;
+      const data = [
+        {
+          url: "https://www.kpopn.com/upload/fa639a8e1ae64ce8f2c0.jpg",
+          name: "Twice Fancy Cover",
+        },
+        {
+          url: "https://cdn1.wishnote.tw/200/2018/04/24/200_91441_1524554375.jpeg",
+          name: "Twice What is Love MV",
+        },
+        {
+          url: "https://img.ltn.com.tw/Upload/ent/page/800/2021/11/06/phpqJ2lIs.jpg",
+          name: "Twice Formula of Love Cover",
+        },
+        {
+          url: "https://static.popdaily.com.tw/u/202109/4b573e45-9586-41e7-bd5d-c391bbfb2a60.jpg",
+          name: "Twice The Feels Cover",
+        },
+        {
+          url: "https://thebiaslistcom.files.wordpress.com/2024/02/twice-i-got-you.jpeg",
+          name: "Twice I Got You Cover",
+        },
+      ];
+      const slider = document.querySelector(".sliderCollect");
+      let sliders = "";
+      for (let i = 0; i < data.length; i++) {
+        sliders += `<img src="${data[i].url}" alt="${data[i].name}" />`;
+      }
+      slider.innerHTML = sliders;
+
+      const left = document.getElementById("left");
+      const right = document.getElementById("right");
+      let index = 0;
+      left.addEventListener("click", () => {
+        if (index - 1 < 0) {
+          index = 4;
+        } else {
+          index = index - 1;
+        }
+        slider.style.transform = `translateX(-${index}00%)`;
+        changeDot();
+      });
+      right.addEventListener("click", () => {
+        if (index + 1 > 4) {
+          index = 0;
+        } else {
+          index = index + 1;
+        }
+        slider.style.transform = `translateX(-${index}00%)`;
+        changeDot();
+      });
+
+      // dot
+      const dotbox = document.querySelector(".dotbox");
+      for (let i = 0; i < data.length; i++) {
+        dotbox.innerHTML += `<div id="${i}" class="dot ${
+          i === 0 ? "checked" : ""
+        }"></div>`;
+      }
+
+      function changeDot() {
+        const dotArray = document.querySelectorAll(".dot");
+        dotArray.forEach((e) => {
+          if (e.id == index) {
+            e.classList.add("checked");
+          } else {
+            e.classList.remove("checked");
+          }
+        });
+      }
+
+      const dots = document.querySelectorAll(".dot");
+      dots.forEach((e) => {
+        e.addEventListener("click", (d) => {
+          index = Number(d.target.id);
+          slider.style.transform = `translateX(-${index}00%)`;
+          changeDot();
+        });
+      });
+    </script>
+    <script src="./navbar.js"></script>
+  </body>
+</html>

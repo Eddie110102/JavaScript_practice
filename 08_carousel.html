@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carosuel 輪播牆</title>
+    <link rel="stylesheet" href="./nav.css">
+    <style>
+      .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .carousel {
+        width: 600px;
+        height: 300px;
+        border: 1px solid black;
+        overflow: hidden;
+      }
+
+      .carousel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      /* 按鈕 */
+      .btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+        margin: 30px;
+        cursor: pointer;
+      }
+      .btn img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      #prev {
+        order: -10;
+      }
+    </style>
+  </head>
+  <body>
+    <nav></nav>
+    <div class="box">
+      <div class="carousel">
+        <img
+          id="img"
+          src="https://www.invoicera.com/wp-content/uploads/2023/11/default-image.jpg"
+        />
+      </div>
+      <div class="btn" id="prev"><img src="./prev.svg" alt="" /></div>
+      <div class="btn" id="next"><img src="./next.svg" alt="" /></div>
+    </div>
+    <script>
+      // 圖片來源
+      const data = [
+        {
+          url: "https://www.kpopn.com/upload/fa639a8e1ae64ce8f2c0.jpg",
+          name: "Twice Fancy Cover",
+        },
+        {
+          url: "https://cdn1.wishnote.tw/200/2018/04/24/200_91441_1524554375.jpeg",
+          name: "Twice What is Love MV",
+        },
+        {
+          url: "https://img.ltn.com.tw/Upload/ent/page/800/2021/11/06/phpqJ2lIs.jpg",
+          name: "Twice Formula of Love Cover",
+        },
+        {
+          url: "https://static.popdaily.com.tw/u/202109/4b573e45-9586-41e7-bd5d-c391bbfb2a60.jpg",
+          name: "Twice The Feels Cover",
+        },
+        {
+          url: "https://thebiaslistcom.files.wordpress.com/2024/02/twice-i-got-you.jpeg",
+          name: "Twice I Got You Cover",
+        },
+      ];
+
+      // 設定一個變數在儲存顯示第幾張圖
+      let page = 0;
+
+      // 抓取輪播牆中顯示圖片的元素
+      const img = document.getElementById("img");
+
+      // 設定畫面載入時顯示哪張圖片
+      img.src = data[0].url;
+      img.alt = data[0].name;
+
+      // 抓取畫面中的兩個控制按鈕
+      const prev = document.getElementById("prev");
+      const next = document.getElementById("next");
+
+      // 將按鈕設定 click 觸發的 function
+      prev.addEventListener("click", prevPage);
+      next.addEventListener("click", nextPage);
+
+      function prevPage() {
+        // 【 < 】按鈕被點擊時，先判斷目前是險是第幾張圖
+        // 如果目前的張數 -1 會小於 0 那就讓圖片變成最後一張圖片 (也就是4)
+        // 如果目前的張數 -1 不會小於 0 代表還有上一張圖可以顯示
+        if (page - 1 < 0) {
+          page = 4;
+        } else {
+          page = page - 1;
+        }
+
+        // 重新設定圖片
+        img.src = data[page].url;
+        img.alt = data[page].name;
+      }
+
+      function nextPage() {
+        // 【 > 】按鈕被點擊時，先判斷目前是險是第幾張圖
+        // 如果目前的張數 +1 會大於 4 那就讓圖片變成第一張圖片 (也就是0)
+        // 如果目前的張數 +1 不會大於 4 代表還有下一張圖可以顯示
+        if (page + 1 > 4) {
+          page = 0;
+        } else {
+          page = page + 1;
+        }
+
+        // 重新設定圖片
+        img.src = data[page].url;
+        img.alt = data[page].name;
+      }
+    </script>
+    <script src="./navbar.js"></script>
+  </body>
+</html>

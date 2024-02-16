@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>九九乘法表</title>
+    <link rel="stylesheet" href="./nav.css">
+    <style>
+      #result {
+        display: inline-flex;
+        border: 1px solid black;
+      }
+      #result > div {
+        padding: 10px;
+        margin: 0;
+      }
+      #result  p{
+        margin: 5px 0px;
+      }
+      #result  div:not(:last-child) {
+        border-right: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <nav></nav>
+    <h1>請劃出九九乘法表</h1>
+    <hr />
+
+    <div id="result"></div>
+    <script>
+      const result = document.getElementById("result");
+
+      for (let i = 2; i < 10; i++) {
+        // 在 #result的<div>中加上 八個 <p> 用來存放 99乘法表公式
+        result.appendChild(document.createElement("div"));
+        for (let j = 1; j < 10; j++) {
+          // 抓取 #result 的八個 <p> 子元素
+          let target = result.children;
+          // 因為第一項子元素是從0開始 所以可以使用 i-2
+          target[i - 2].innerHTML += `<p>${i}x${j}=${i * j}</p>`;
+        }
+      }
+    </script>
+    <script src="./navbar.js"></script>
+  </body>
+</html>
