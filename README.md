@@ -1,5 +1,4 @@
-## [靜態網頁](https://Eddie110102.github.io/JavaScript_practice)
-## [原始碼](https://github.com/Eddie110102/JavaScript_practice)
+## [靜態頁面](https://Eddie110102.github.io/JavaScript_practice/01_BMI.html)
 
 ## 1. 讓使用者可以輸入自己的體重及身高，根據算出來的 BMI 值顯示下列訊息 [(解答)](./01_BMI.html)
 
