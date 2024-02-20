@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carosuel 輪播牆</title>
-    <link rel="stylesheet" href="./nav.css">
+    <link rel="stylesheet" href="./nav.css" />
     <style>
       .box {
         display: flex;
@@ -106,7 +106,7 @@
         // 如果目前的張數 -1 會小於 0 那就讓圖片變成最後一張圖片 (也就是4)
         // 如果目前的張數 -1 不會小於 0 代表還有上一張圖可以顯示
         if (page - 1 < 0) {
-          page = 4;
+          page = data.lenght - 1;
         } else {
           page = page - 1;
         }
@@ -120,7 +120,7 @@
         // 【 > 】按鈕被點擊時，先判斷目前是險是第幾張圖
         // 如果目前的張數 +1 會大於 4 那就讓圖片變成第一張圖片 (也就是0)
         // 如果目前的張數 +1 不會大於 4 代表還有下一張圖可以顯示
-        if (page + 1 > 4) {
+        if (page + 1 > data.length - 1) {
           page = 0;
         } else {
           page = page + 1;
