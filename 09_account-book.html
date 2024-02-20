@@ -1,69 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>記帳本</title>
-    <link rel="stylesheet" href="./nav.css">
+    <link rel="stylesheet" href="./nav.css" />
     <style>
-        .card{
-            display: flex;
-            justify-content: space-around;
-            border-bottom: 2px dashed gray;
-            padding: 10px;
-            align-items: center;
-        }
-        .card > *{
-            width: 25%;
-            text-align: center;
-
-        }
-        button{
-            height: 30px;
-        }
-        .box > :last-child{
+      .controlBar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .controlBar > input:not(:last-child) {
+        margin-right: 20px;
+      }
+      .hint {
+        text-align: center;
+        color: red;
+        margin: 0;
+        height: 50px;
+        line-height: 50px;
+      }
+      .false {
+        border-color: red;
+      }
+      .success {
+        color: green;
+      }
+      input:focus {
+        outline: none;
+      }
+      .box {
+        border: 2px solid black;
+        width: 600px;
+        margin: auto;
+      }
+      .card {
+        display: flex;
+        justify-content: space-around;
+        border-bottom: 2px dashed gray;
+        padding: 10px;
+        align-items: center;
+      }
+      .card > * {
+        width: 25%;
+        text-align: center;
+      }
+      button {
+        height: 30px;
+      }
+      .box > :last-child {
         border-bottom: 0;
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <nav></nav>
-    <label for="">日期：</label>
-    <input type="date">
-    <label for="">項目：</label>
-    <input type="text">
-    <label for="">金額：</label>
-    <input type="number">
-    <input type="submit" value="新增">
-    <br>
-    <br>
-    <br>
-    <div style="border: 2px solid black; width: 600px;" class="box">
-        <div class="card" style="border-bottom: 2px solid black;">
-            <p>日期</p>
-            <p>項目</p>
-            <p>金額</p>
-            <p>刪除</p>
-        </div>
-        <div class="card">
-            <p>2024/11/25</p>
-            <p>早餐</p>
-            <p>$90元</p>
-            <button>刪除</button>
-        </div>
-        <div class="card">
-            <p>2024/11/30</p>
-            <p>早餐</p>
-            <p>$60元</p>
-            <button>刪除</button>
-        </div>
-        <div class="card">
-            <p>2024/11/30</p>
-            <p>晚餐</p>
-            <p>$70元</p>
-            <button>刪除</button>
-        </div>
+    <div class="controlBar">
+      <label for="date">日期：</label>
+      <input type="date" id="date" data-falsetext="日期" />
+      <label for="project">項目：</label>
+      <input type="text" id="project" data-falsetext="項目" />
+      <label for="cost">金額：</label>
+      <input type="number" id="cost" data-falsetext="金額" />
+      <button id="add">新增</button>
+    </div>
+    <p class="hint"></p>
+    <div class="box">
+      <div class="card">
+        <p>日期</p>
+        <p>項目</p>
+        <p>金額</p>
+        <p>刪除</p>
+      </div>
     </div>
     <script src="./navbar.js"></script>
-</body>
+    <script>
+      const add = document.querySelector("#add");
+      const date = document.querySelector("#date");
+      const project = document.querySelector("#project");
+      const cost = document.querySelector("#cost");
+      const hint = document.querySelector(".hint");
+      const box = document.querySelector(".box");
+
+      add.addEventListener("click", check);
+
+      function check() {
+        let isPass = false;
+        let result = "";
+
+        document.querySelectorAll("input").forEach((element) => {
+          if (element.value == "") {
+            element.classList.add("false");
+            if (result == "") {
+              result = `${element.dataset.falsetext}`;
+            } else {
+              result += `、${element.dataset.falsetext}`;
+            }
+          } else {
+            element.classList.remove("false");
+            hint.textContent = "";
+          }
+        });
+        if (result !== "") {
+          result = "請確認" + result + "是否有正確填寫";
+          hint.textContent = result;
+        } else {
+          isPass = true;
+        }
+
+        if (isPass) {
+          createItem();
+        } else {
+          hint.textContent = result;
+          hint.classList.remove("success");
+        }
+      }
+
+      function createItem() {
+        const item = `<div class="card"><p>${date.value}</p><p>${project.value}</p><p>$ ${cost.value}</p><button class='delete'>刪除</button></div>`;
+        box.innerHTML += item;
+
+        document.querySelectorAll(".delete").forEach((e) => {
+          e.addEventListener("click", removeItem);
+        });
+
+        hint.textContent = "新增成功";
+        hint.classList.add("success");
+        document.querySelectorAll("input").forEach((element) => {
+          element.value = "";
+        });
+      }
+
+      function removeItem(event) {
+        event.target.parentElement.remove();
+        hint.classList.add("success");
+        hint.textContent = "刪除成功";
+      }
+
+    </script>
+  </body>
 </html>
