@@ -6,138 +6,263 @@
     <title>記帳本</title>
     <link rel="stylesheet" href="./nav.css" />
     <style>
+      /* 使用者輸入的控制項 */
       .controlBar {
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 100px;
+        margin-bottom: 30px;
+        position: relative;
       }
-      .controlBar > input:not(:last-child) {
+      .controlBar input:not(:last-child) {
         margin-right: 20px;
       }
-      .hint {
-        text-align: center;
-        color: red;
-        margin: 0;
-        height: 50px;
-        line-height: 50px;
+      .controlBar div {
+        position: relative;
       }
-      .false {
-        border-color: red;
-      }
-      .success {
-        color: green;
+
+      input {
+        width: 250px;
+        padding: 5px 20px;
+        border-radius: 8px;
+        border: 1px solid black;
+        height: 30px;
+        box-sizing: border-box;
       }
       input:focus {
         outline: none;
       }
-      .box {
-        border: 2px solid black;
-        width: 600px;
+      label::after {
+        content: "：";
+      }
+
+      /* 提示文字 */
+      .warning {
+        position: absolute;
+        white-space: nowrap;
+        color: red;
+        margin: 0;
+        right: 0;
+        transform: translate(-20px, 10px);
+      }
+      .hint {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 40px);
+        color: green;
+      }
+      .false {
+        border-color: red;
+      }
+
+      /* 按鈕 */
+      button {
+        border: 1px solid black;
+        border-radius: 8px;
+        padding: 5px 15px;
+        cursor: pointer;
+        color: white;
+      }
+
+      #add {
+        background-color: cadetblue;
+      }
+      #add:hover {
+        background-color: darkcyan;
+      }
+      .delete {
+        background-color: lightcoral;
+      }
+      .delete:hover {
+        background-color: darkred;
+      }
+
+      /* 表格 */
+
+      table {
+        width: 1000px;
         margin: auto;
-      }
-      .card {
-        display: flex;
-        justify-content: space-around;
-        border-bottom: 2px dashed gray;
-        padding: 10px;
-        align-items: center;
-      }
-      .card > * {
-        width: 25%;
+        border-collapse: collapse;
+        border-radius: 15px;
+        overflow: hidden;
         text-align: center;
       }
-      button {
-        height: 30px;
+
+      thead {
+        background-color: black;
+        color: white;
+        height: 3em;
       }
-      .box > :last-child {
-        border-bottom: 0;
+
+      tbody td {
+        padding: 10px;
+      }
+
+      tbody > :not(:last-child) {
+        border-bottom: 2px dashed gray;
+      }
+
+      tr > :not(:nth-child(2)) {
+        width: 20%;
+      }
+
+      .money::before {
+        content: "$ ";
       }
     </style>
   </head>
   <body>
     <nav></nav>
     <div class="controlBar">
-      <label for="date">日期：</label>
-      <input type="date" id="date" data-falsetext="日期" />
-      <label for="project">項目：</label>
-      <input type="text" id="project" data-falsetext="項目" />
-      <label for="cost">金額：</label>
-      <input type="number" id="cost" data-falsetext="金額" />
-      <button id="add">新增</button>
-    </div>
-    <p class="hint"></p>
-    <div class="box">
-      <div class="card">
-        <p>日期</p>
-        <p>項目</p>
-        <p>金額</p>
-        <p>刪除</p>
+      <div>
+        <label for="date">日期</label>
+        <input type="date" />
+        <p class="warning"></p>
       </div>
+      <div>
+        <label for="project">項目</label>
+        <input type="text" />
+        <p class="warning"></p>
+      </div>
+      <div>
+        <label for="cost">金額</label>
+        <input type="number" />
+        <p class="warning"></p>
+      </div>
+      <button id="add">新增</button>
+      <p class="hint"></p>
     </div>
+    <table>
+      <thead>
+        <tr class="card">
+          <th>日期</th>
+          <th>項目</th>
+          <th>金額</th>
+          <th>刪除</th>
+        </tr>
+      </thead>
+      <tbody class="box"></tbody>
+    </table>
     <script src="./navbar.js"></script>
     <script>
-      const add = document.querySelector("#add");
-      const date = document.querySelector("#date");
-      const project = document.querySelector("#project");
-      const cost = document.querySelector("#cost");
-      const hint = document.querySelector(".hint");
+
+      const inputs = document.querySelectorAll("input");
       const box = document.querySelector(".box");
+      const hint = document.querySelector(".hint");
+      const add = document.querySelector("#add");
 
       add.addEventListener("click", check);
 
       function check() {
         let isPass = false;
-        let result = "";
-
-        document.querySelectorAll("input").forEach((element) => {
+        // 透過迴圈驗證所有欄位
+        inputs.forEach((element) => {
+            // 判斷是否為空值
           if (element.value == "") {
             element.classList.add("false");
-            if (result == "") {
-              result = `${element.dataset.falsetext}`;
-            } else {
-              result += `、${element.dataset.falsetext}`;
+            switch (element.type) {
+              case "date":
+                element.nextElementSibling.textContent = "請選擇日期";
+                break;
+              case "text":
+                element.nextElementSibling.textContent = "請輸入正確項目名稱";
+                break;
+              case "number":
+                element.nextElementSibling.textContent = "請輸入正確金額";
+                break;
+              default:
+                break;
             }
+            isPass += false;
           } else {
-            element.classList.remove("false");
-            hint.textContent = "";
+            // 項目驗證
+            if (element.type == "text") {
+              const textRegex = /^(?=.*[a-zA-Z\u4e00-\u9fa5])\S*$/;
+              let result = textRegex.test(element.value);
+              console.log("eddie", result);
+            // 未包含 中文/英文 任一文字 也顯示錯誤
+              if (!result) {
+                element.nextElementSibling.textContent =
+                  "項目名稱必須包含中文/英文";
+              } else {
+                element.classList.remove("false");
+                element.nextElementSibling.textContent = "";
+                isPass += true;
+              }
+            } else {
+              element.classList.remove("false");
+              element.nextElementSibling.textContent = "";
+              isPass += true;
+            }
           }
         });
-        if (result !== "") {
-          result = "請確認" + result + "是否有正確填寫";
-          hint.textContent = result;
-        } else {
-          isPass = true;
-        }
 
-        if (isPass) {
+        // 欄位都驗證通過即新增資料
+        if (isPass == inputs.length) {
           createItem();
-        } else {
-          hint.textContent = result;
-          hint.classList.remove("success");
+        }else{
+            // 清空 新增/刪除成功 文字
+            hints('')
         }
       }
 
       function createItem() {
-        const item = `<div class="card"><p>${date.value}</p><p>${project.value}</p><p>$ ${cost.value}</p><button class='delete'>刪除</button></div>`;
-        box.innerHTML += item;
+        // 建立<tr></tr>
+        const tr = document.createElement("tr");
 
-        document.querySelectorAll(".delete").forEach((e) => {
-          e.addEventListener("click", removeItem);
-        });
+        // 將使用者所填入的控制項透過迴圈建立<td>使用者輸入的值</td>，並塞進<tr>中
+        inputs.forEach((element) => {
+          const paragraph = document.createElement("td");
+          if (element.type == "number") {
+            let comma = /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g;
+            let res = element.value.toString().replace(comma, ",");
+            paragraph.textContent = `${res}`;
+            paragraph.classList.add("money");
+          } else {
+            if (element.type == "text") {
+              paragraph.classList.add("items");
+            }
+            paragraph.textContent = element.value;
+          }
+          tr.appendChild(paragraph);
 
-        hint.textContent = "新增成功";
-        hint.classList.add("success");
-        document.querySelectorAll("input").forEach((element) => {
+          // 清空資料
           element.value = "";
         });
+
+        // 增加刪除按鈕
+        const td = document.createElement("td");
+        const btn = document.createElement("button");
+        btn.textContent = "刪除";
+        btn.classList.add("delete");
+        btn.addEventListener("click", deleteItem);
+        td.appendChild(btn);
+        tr.appendChild(td);
+
+        // 將整個<tr></tr>塞進<tbody class="box"></tbody>中
+        box.appendChild(tr);
+
+        // 顯示提示文字
+        hints("新增成功");
       }
 
-      function removeItem(event) {
-        event.target.parentElement.remove();
-        hint.classList.add("success");
-        hint.textContent = "刪除成功";
+    // 點擊刪除按鈕
+      function deleteItem(event) {
+        // 將整筆資料移除
+        event.target.parentElement.parentElement.remove();
+        // 預防原先控制項有錯誤提示字，先設定清空
+        inputs.forEach((element) => {
+          element.classList.remove("false");
+          element.nextElementSibling.textContent = "";
+        });
+        // 顯示提示文字
+        hints("刪除成功");
       }
 
+      function hints(text){
+        hint.textContent = text
+      }
     </script>
   </body>
 </html>
