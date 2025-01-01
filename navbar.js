@@ -32,31 +32,37 @@ const navBox = document.createElement("div");
 navBox.classList.add("navBox");
 
 const pages_javascript = [
-  { link: "01_BMI.html", name: "BMI計算機" },
-  { link: "02_Leap-Year.html", name: "閏年計算機" },
-  { link: "03_Multiplication-Table.html", name: "九九乘法表" },
-  { link: "04_Temperature-Translate.html", name: "溫度轉換器" },
-  { link: "05_Birthday.html", name: "年齡計算機" },
-  { link: "06_Password-regex.html", name: "密碼驗證" },
-  { link: "06_Password-regex-separate.html", name: "密碼驗證分項目" },
-  { link: "07_alert.html", name: "彈跳視窗" },
-  { link: "08_carousel.html", name: "輪播牆" },
-  { link: "08_carousel-pagination.html", name: "輪播牆_pagination" },
-  { link: "09_account-book.html", name: "記帳本" },
+  { link: "01_bmi.html", name: "1、BMI計算機" },
+  { link: "02_leap-year.html", name: "2、閏年計算機" },
+  { link: "03_multiplication-table.html", name: "3、九九乘法表" },
+  { link: "04_temperature-translate.html", name: "4、溫度轉換器" },
+  { link: "05_birthday.html", name: "5、年齡計算機" },
+  { link: "06_password-regex.html", name: "6、密碼驗證" },
+  { link: "06_password-regex-separate.html", name: "6-1、密碼驗證分項目" },
+  { link: "07_alert.html", name: "7、彈跳視窗" },
+  { link: "08_carousel.html", name: "8、輪播牆" },
+  { link: "08_carousel-pagination.html", name: "8-1、輪播牆_pagination" },
+  { link: "09_account-book.html", name: "9、記帳本" },
 ];
 
 const pages_jQuery = [
-  { link: "01_BMI-jQuery.html", name: "BMI計算機" },
-  { link: "02_Leap-Year-jQuery.html", name: "閏年計算機" },
-  { link: "03_Multiplication-Table-jQuery.html", name: "九九乘法表" },
-  { link: "04_Temperature-Translate-jQuery.html", name: "溫度轉換器" },
-  { link: "05_Birthday-jQuery.html", name: "年齡計算機" },
-  { link: "06_Password-regex-jQuery.html", name: "密碼驗證" },
-  { link: "06_Password-regex-separate-jQuery.html", name: "密碼驗證分項目" },
-  { link: "07_alert-jQuery.html", name: "彈跳視窗" },
-  { link: "08_carousel-jQuery.html", name: "輪播牆" },
-  { link: "08_carousel-pagination-jQuery.html", name: "輪播牆_pagination" },
-  { link: "09_account-book-jQuery.html", name: "記帳本" },
+  { link: "01_bmi-jQuery.html", name: "1、BMI計算機" },
+  { link: "02_leap-year-jQuery.html", name: "2、閏年計算機" },
+  { link: "03_multiplication-table-jQuery.html", name: "3、九九乘法表" },
+  { link: "04_temperature-translate-jQuery.html", name: "4、溫度轉換器" },
+  { link: "05_birthday-jQuery.html", name: "5、年齡計算機" },
+  { link: "06_password-regex-jQuery.html", name: "6、密碼驗證" },
+  {
+    link: "06_password-regex-separate-jQuery.html",
+    name: "6-1、密碼驗證分項目",
+  },
+  { link: "07_alert-jQuery.html", name: "7、彈跳視窗" },
+  { link: "08_carousel-jQuery.html", name: "8、輪播牆" },
+  {
+    link: "08_carousel-pagination-jQuery.html",
+    name: "8-1、輪播牆_pagination",
+  },
+  { link: "09_account-book-jQuery.html", name: "9、記帳本" },
 ];
 
 function changeLink(type) {
