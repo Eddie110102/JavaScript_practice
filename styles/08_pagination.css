@@ -21,7 +21,7 @@
   object-fit: cover;
   object-position: center;
 }
-.dotbox {
+.dotBox {
   display: flex;
   justify-content: center;
   align-items: center;
