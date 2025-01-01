@@ -1,0 +1,106 @@
+     /* 使用者輸入的控制項 */
+     .controlBar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+        margin-bottom: 30px;
+        position: relative;
+      }
+      .controlBar input:not(:last-child) {
+        margin-right: 20px;
+      }
+      .controlBar div {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      input {
+        width: 200px;
+        padding: 5px 20px;
+        border-radius: 8px;
+        border: 1px solid black;
+        height: 30px;
+        box-sizing: border-box;
+      }
+      input:focus {
+        outline: none;
+      }
+      label::after {
+        content: "：";
+      }
+
+      /* 提示文字 */
+      .warning {
+        position: absolute;
+        white-space: nowrap;
+        color: red;
+        margin: 0;
+        right: 0;
+        transform: translate(-20px, 10px);
+      }
+      .hint {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 40px);
+        color: green;
+      }
+      .false {
+        border-color: red;
+      }
+
+      /* 按鈕 */
+      button {
+        border: 1px solid black;
+        border-radius: 8px;
+        padding: 5px 15px;
+        cursor: pointer;
+        color: white;
+      }
+
+      #add {
+        background-color: cadetblue;
+      }
+      #add:hover {
+        background-color: darkcyan;
+      }
+      .delete {
+        background-color: lightcoral;
+      }
+      .delete:hover {
+        background-color: darkred;
+      }
+
+      /* 表格 */
+
+      table {
+        width: 1000px;
+        margin: auto;
+        border-collapse: collapse;
+        border-radius: 15px;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      thead {
+        background-color: black;
+        color: white;
+        height: 3em;
+      }
+
+      tbody td {
+        padding: 10px;
+      }
+
+      tbody > :not(:last-child) {
+        border-bottom: 2px dashed gray;
+      }
+
+      tr > :not(:nth-child(2)) {
+        width: 20%;
+      }
+
+      .money::before {
+        content: "$ ";
+      }

@@ -4,30 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>九九乘法表</title>
-    <link rel="stylesheet" href="./nav.css" />
-    <style>
-      #result {
-        display: inline-flex;
-        border: 1px solid black;
-      }
-      #result > div {
-        padding: 10px;
-        margin: 0;
-      }
-      #result p {
-        margin: 5px 0px;
-      }
-      #result div:not(:last-child) {
-        border-right: 1px solid black;
-      }
-    </style>
+    <link rel="stylesheet" href="./styles/nav.css" />
+    <link rel="stylesheet" href="./styles/03_multiplication-table.css" />
   </head>
   <body>
-    <nav></nav>
-    <h1>請劃出九九乘法表</h1>
-    <hr />
+    <div class="container">
+      <nav></nav>
+      <div>
+        <h1>請劃出九九乘法表</h1>
+        <hr />
 
-    <div id="result"></div>
+        <div id="result"></div>
+      </div>
+    </div>
     <script>
       const result = document.querySelector("#result");
 

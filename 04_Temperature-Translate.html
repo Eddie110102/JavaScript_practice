@@ -4,23 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>溫度轉換</title>
-    <link rel="stylesheet" href="./nav.css" />
+    <link rel="stylesheet" href="./styles/nav.css" />
   </head>
   <body>
-    <nav></nav>
-    <h1>
-      請設計一個
-      function，傳入攝氏溫度可以轉成華氏溫度，傳入華氏溫度可以轉成攝氏溫度
-    </h1>
-    <hr />
-    <label>
-      <select name="unit" id="unit">
-        <option value="c">攝氏（℃ ）</option>
-        <option value="f">華氏（℉ ）</option>
-      </select>
-    </label>
-    <input type="text" id="temperature" value="0" />
-    <div id="result"></div>
+    <div class="container">
+      <nav></nav>
+      <div>
+        <h1>
+          請設計一個
+          function，傳入攝氏溫度可以轉成華氏溫度，傳入華氏溫度可以轉成攝氏溫度
+        </h1>
+        <hr />
+        <label>
+          <select name="unit" id="unit">
+            <option value="c">攝氏（℃ ）</option>
+            <option value="f">華氏（℉ ）</option>
+          </select>
+        </label>
+        <input type="text" id="temperature" value="0" />
+        <div id="result"></div>
+      </div>
+    </div>
+
     <script>
       const unit = document.querySelector("#unit");
       const temperature = document.querySelector("#temperature");

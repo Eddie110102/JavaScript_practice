@@ -4,146 +4,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>記帳本</title>
-    <link rel="stylesheet" href="./nav.css" />
-    <style>
-      /* 使用者輸入的控制項 */
-      .controlBar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100px;
-        margin-bottom: 30px;
-        position: relative;
-      }
-      .controlBar input:not(:last-child) {
-        margin-right: 20px;
-      }
-      .controlBar div {
-        position: relative;
-      }
-
-      input {
-        width: 250px;
-        padding: 5px 20px;
-        border-radius: 8px;
-        border: 1px solid black;
-        height: 30px;
-        box-sizing: border-box;
-      }
-      input:focus {
-        outline: none;
-      }
-      label::after {
-        content: "：";
-      }
-
-      /* 提示文字 */
-      .warning {
-        position: absolute;
-        white-space: nowrap;
-        color: red;
-        margin: 0;
-        right: 0;
-        transform: translate(-20px, 10px);
-      }
-      .hint {
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, 40px);
-        color: green;
-      }
-      .false {
-        border-color: red;
-      }
-
-      /* 按鈕 */
-      button {
-        border: 1px solid black;
-        border-radius: 8px;
-        padding: 5px 15px;
-        cursor: pointer;
-        color: white;
-      }
-
-      #add {
-        background-color: cadetblue;
-      }
-      #add:hover {
-        background-color: darkcyan;
-      }
-      .delete {
-        background-color: lightcoral;
-      }
-      .delete:hover {
-        background-color: darkred;
-      }
-
-      /* 表格 */
-
-      table {
-        width: 1000px;
-        margin: auto;
-        border-collapse: collapse;
-        border-radius: 15px;
-        overflow: hidden;
-        text-align: center;
-      }
-
-      thead {
-        background-color: black;
-        color: white;
-        height: 3em;
-      }
-
-      tbody td {
-        padding: 10px;
-      }
-
-      tbody > :not(:last-child) {
-        border-bottom: 2px dashed gray;
-      }
-
-      tr > :not(:nth-child(2)) {
-        width: 20%;
-      }
-
-      .money::before {
-        content: "$ ";
-      }
-    </style>
+    <link rel="stylesheet" href="./styles/nav.css" />
+    <link rel="stylesheet" href="./styles/09_account-book.css" />
   </head>
   <body>
-    <nav></nav>
-    <div class="controlBar">
+    <div class="container">
+      <nav></nav>
       <div>
-        <label for="date">日期</label>
-        <input type="date" />
-        <p class="warning"></p>
+        <h1>記帳本</h1>
+        <hr />
+        <div class="controlBar">
+          <div>
+            <label for="date">日期</label>
+            <input type="date" />
+            <p class="warning"></p>
+          </div>
+          <div>
+            <label for="project">項目</label>
+            <input type="text" />
+            <p class="warning"></p>
+          </div>
+          <div>
+            <label for="cost">金額</label>
+            <input type="number" />
+            <p class="warning"></p>
+          </div>
+          <button id="add">新增</button>
+          <p class="hint"></p>
+        </div>
+        <table>
+          <thead>
+            <tr class="card">
+              <th>日期</th>
+              <th>項目</th>
+              <th>金額</th>
+              <th>刪除</th>
+            </tr>
+          </thead>
+          <tbody class="box"></tbody>
+        </table>
       </div>
-      <div>
-        <label for="project">項目</label>
-        <input type="text" />
-        <p class="warning"></p>
-      </div>
-      <div>
-        <label for="cost">金額</label>
-        <input type="number" />
-        <p class="warning"></p>
-      </div>
-      <button id="add">新增</button>
-      <p class="hint"></p>
     </div>
-    <table>
-      <thead>
-        <tr class="card">
-          <th>日期</th>
-          <th>項目</th>
-          <th>金額</th>
-          <th>刪除</th>
-        </tr>
-      </thead>
-      <tbody class="box"></tbody>
-    </table>
+
     <script src="./navbar.js"></script>
     <script>
       const inputs = document.querySelectorAll("input");

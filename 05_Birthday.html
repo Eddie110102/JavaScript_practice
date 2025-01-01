@@ -4,16 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>生日計算機</title>
-    <link rel="stylesheet" href="./nav.css" />
+    <link rel="stylesheet" href="./styles/nav.css" />
   </head>
   <body>
-    <nav></nav>
-    <h1>讓使用者輸入生日計算目前幾歲</h1>
-    <hr />
-    <label
-      >請輸入生日：<input type="date" id="userBirthday" value="2000-01-01"
-    /></label>
-    <div id="result"></div>
+    <div class="container">
+      <nav></nav>
+      <div>
+        <h1>讓使用者輸入生日計算目前幾歲</h1>
+        <hr />
+        <label
+          >請輸入生日：<input type="date" id="userBirthday" value="2000-01-01"
+        /></label>
+        <div id="result"></div>
+      </div>
+    </div>
+
     <script>
       const userBirthday = document.querySelector("#userBirthday");
       const result = document.querySelector("#result");

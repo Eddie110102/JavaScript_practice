@@ -3,21 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BMI</title>
-    <link rel="stylesheet" href="./nav.css" />
+    <title>BMI - jQuery</title>
+    <link rel="stylesheet" href="./styles/nav.css" />
   </head>
   <body>
-    <nav></nav>
-    <h1>讓使用者可以輸入自己的體重及身高，根據算出來的BMI値顯示下列訊息</h1>
-    <hr />
-    <label
-      >身高（公分）：<input type="number" name="userHeight" id="height"
-    /></label>
-    <label
-      >體重（公斤）：<input type="number" name="userWeight" id="weight"
-    /></label>
-    <button id="enter">送出</button>
-    <div>您的BMI值為<span id="bmiValue"></span>，<span id="result"></span></div>
+    <div class="container">
+      <nav></nav>
+      <div>
+        <h1>
+          讓使用者可以輸入自己的體重及身高，根據算出來的BMI値顯示下列訊息 -
+          jQuery
+        </h1>
+        <hr />
+        <label
+          >身高（公分）：<input type="number" name="userHeight" id="height"
+        /></label>
+        <label
+          >體重（公斤）：<input type="number" name="userWeight" id="weight"
+        /></label>
+        <button id="enter">送出</button>
+        <div>
+          您的BMI值為<span id="bmiValue"></span>，<span id="result"></span>
+        </div>
+      </div>
+    </div>
+
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
