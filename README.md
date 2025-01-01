@@ -1,4 +1,4 @@
-## [靜態頁面](https://Eddie110102.github.io/JavaScript_practice/01_BMI.html)
+## [靜態頁面](https://Eddie110102.github.io/JavaScript_practice/01_bmi.html)
 
 ## 1. 讓使用者可以輸入自己的體重及身高，根據算出來的 BMI 值顯示下列訊息 [(JS 解答)](./01_bmi.html) [(JQ 解答)](./01_bmi-jQuery.html)
 
