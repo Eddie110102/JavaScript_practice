@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>九九乘法表</title>
-    <link rel="stylesheet" href="./nav.css">
+    <link rel="stylesheet" href="./nav.css" />
     <style>
       #result {
         display: inline-flex;
@@ -14,10 +14,10 @@
         padding: 10px;
         margin: 0;
       }
-      #result  p{
+      #result p {
         margin: 5px 0px;
       }
-      #result  div:not(:last-child) {
+      #result div:not(:last-child) {
         border-right: 1px solid black;
       }
     </style>
@@ -29,7 +29,7 @@
 
     <div id="result"></div>
     <script>
-      const result = document.getElementById("result");
+      const result = document.querySelector("#result");
 
       for (let i = 2; i < 10; i++) {
         // 在 #result的<div>中加上 八個 <p> 用來存放 99乘法表公式

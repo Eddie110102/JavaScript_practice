@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>閏年</title>
-    <link rel="stylesheet" href="./nav.css">
+    <link rel="stylesheet" href="./nav.css" />
   </head>
   <body>
     <nav></nav>
@@ -16,11 +16,11 @@
     <button id="enter">送出</button>
     <div>結果：<span id="result"></span></div>
     <script>
-      const year = document.getElementById("year");
-      const result = document.getElementById("result");
+      const year = document.querySelector("#year");
+      const result = document.querySelector("#result");
 
       enter.addEventListener("click", () => {
-        let res = checkYear(year.value)
+        let res = checkYear(year.value);
         result.innerHTML = res;
       });
 
@@ -32,8 +32,6 @@
         }
         return res;
       }
-
-      
     </script>
     <script src="./navbar.js"></script>
   </body>

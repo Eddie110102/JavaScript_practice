@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>溫度轉換</title>
-    <link rel="stylesheet" href="./nav.css">
+    <link rel="stylesheet" href="./nav.css" />
   </head>
   <body>
     <nav></nav>
@@ -22,9 +22,9 @@
     <input type="text" id="temperature" />
     <div id="result"></div>
     <script>
-      const unit = document.getElementById("unit");
-      const temperature = document.getElementById("temperature");
-      const result = document.getElementById("result");
+      const unit = document.querySelector("#unit");
+      const temperature = document.querySelector("#temperature");
+      const result = document.querySelector("#result");
 
       // 輸入溫度時會自動計算
       temperature.addEventListener("input", () => {

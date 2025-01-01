@@ -146,7 +146,6 @@
     </table>
     <script src="./navbar.js"></script>
     <script>
-
       const inputs = document.querySelectorAll("input");
       const box = document.querySelector(".box");
       const hint = document.querySelector(".hint");
@@ -158,7 +157,7 @@
         let isPass = false;
         // 透過迴圈驗證所有欄位
         inputs.forEach((element) => {
-            // 判斷是否為空值
+          // 判斷是否為空值
           if (element.value == "") {
             element.classList.add("false");
             switch (element.type) {
@@ -181,7 +180,7 @@
               const textRegex = /^(?=.*[a-zA-Z\u4e00-\u9fa5])\S*$/;
               let result = textRegex.test(element.value);
               console.log("eddie", result);
-            // 未包含 中文/英文 任一文字 也顯示錯誤
+              // 未包含 中文/英文 任一文字 也顯示錯誤
               if (!result) {
                 element.nextElementSibling.textContent =
                   "項目名稱必須包含中文/英文";
@@ -201,9 +200,9 @@
         // 欄位都驗證通過即新增資料
         if (isPass == inputs.length) {
           createItem();
-        }else{
-            // 清空 新增/刪除成功 文字
-            hints('')
+        } else {
+          // 清空 新增/刪除成功 文字
+          hints("");
         }
       }
 
@@ -247,7 +246,7 @@
         hints("新增成功");
       }
 
-    // 點擊刪除按鈕
+      // 點擊刪除按鈕
       function deleteItem(event) {
         // 將整筆資料移除
         event.target.parentElement.parentElement.remove();
@@ -260,8 +259,8 @@
         hints("刪除成功");
       }
 
-      function hints(text){
-        hint.textContent = text
+      function hints(text) {
+        hint.textContent = text;
       }
     </script>
   </body>

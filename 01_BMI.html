@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BMI</title>
-    <link rel="stylesheet" href="./nav.css">
+    <link rel="stylesheet" href="./nav.css" />
   </head>
   <body>
     <nav></nav>
@@ -20,14 +20,14 @@
     <div>您的BMI值為<span id="bmiValue"></span>，<span id="result"></span></div>
     <script>
       // 抓取HTML中的元素
-      const height = document.getElementById("height");
-      const weight = document.getElementById("weight");
-      const enter = document.getElementById("enter");
-      const bmiValue = document.getElementById("bmiValue");
-      const result = document.getElementById("result");
+      const height = document.querySelector("#height");
+      const weight = document.querySelector("#weight");
+      const enter = document.querySelector("#enter");
+      const bmiValue = document.querySelector("#bmiValue");
+      const result = document.querySelector("#result");
 
       // 事件聆聽
-      enter.addEventListener("click", ()=>{
+      enter.addEventListener("click", () => {
         let bmiResult = translateBMI(weight.value, height.value);
         bmiValue.innerText = bmiResult;
         let res = isOverWeight(bmiResult);

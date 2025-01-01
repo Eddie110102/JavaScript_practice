@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carosuel 輪播牆</title>
+    <title>Carousel 輪播牆</title>
     <link rel="stylesheet" href="./nav.css" />
     <style>
       .box {
@@ -87,15 +87,15 @@
       let page = 0;
 
       // 抓取輪播牆中顯示圖片的元素
-      const img = document.getElementById("img");
+      const img = document.querySelector("#img");
 
       // 設定畫面載入時顯示哪張圖片
       img.src = data[0].url;
       img.alt = data[0].name;
 
       // 抓取畫面中的兩個控制按鈕
-      const prev = document.getElementById("prev");
-      const next = document.getElementById("next");
+      const prev = document.querySelector("#prev");
+      const next = document.querySelector("#next");
 
       // 將按鈕設定 click 觸發的 function
       prev.addEventListener("click", prevPage);

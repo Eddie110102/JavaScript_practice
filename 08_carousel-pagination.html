@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carosuel 輪播牆</title>
+    <title>Carousel 輪播牆</title>
     <link rel="stylesheet" href="./nav.css" />
     <style>
       .box {
@@ -109,8 +109,8 @@
       }
       slider.innerHTML = sliders;
 
-      const left = document.getElementById("left");
-      const right = document.getElementById("right");
+      const left = document.querySelector("#left");
+      const right = document.querySelector("#right");
       let index = 0;
       left.addEventListener("click", () => {
         if (index - 1 < 0) {
