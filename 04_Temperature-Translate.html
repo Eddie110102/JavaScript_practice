@@ -19,7 +19,7 @@
         <option value="f">華氏（℉ ）</option>
       </select>
     </label>
-    <input type="text" id="temperature" />
+    <input type="text" id="temperature" value="0" />
     <div id="result"></div>
     <script>
       const unit = document.querySelector("#unit");
@@ -28,15 +28,15 @@
 
       // 輸入溫度時會自動計算
       temperature.addEventListener("input", () => {
-        reFresh(temperature.value, unit.value);
+        refresh(temperature.value, unit.value);
       });
 
       // 改變溫度單位時會自動計算
       unit.addEventListener("change", () => {
-        reFresh(temperature.value, unit.value);
+        refresh(temperature.value, unit.value);
       });
 
-      function reFresh(a, b) {
+      function refresh(a, b) {
         let res = translate(a, b);
         result.innerHTML = res;
       }
