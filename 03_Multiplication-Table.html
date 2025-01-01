@@ -38,7 +38,11 @@
           // 抓取 #result 的八個 <p> 子元素
           let target = result.children;
           // 因為第一項子元素是從0開始 所以可以使用 i-2
-          target[i - 2].innerHTML += `<p>${i}x${j}=${i * j}</p>`;
+
+          // 如果相乘結果是個位數就自動加上0
+          target[i - 2].innerHTML += `<p>${i} x ${j} = ${
+            i * j < 10 ? "0" + i * j : i * j
+          }</p>`;
         }
       }
     </script>
