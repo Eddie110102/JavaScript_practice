@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel 輪播牆</title>
+    <link rel="stylesheet" href="./nav.css" />
+    <style>
+      .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .carousel {
+        width: 600px;
+        height: 300px;
+        border: 1px solid black;
+        overflow: hidden;
+      }
+
+      .carousel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      /* 按鈕 */
+      .btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+        margin: 30px;
+        cursor: pointer;
+      }
+      .btn img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      #prev {
+        order: -10;
+      }
+    </style>
+  </head>
+  <body>
+    <nav></nav>
+    <div class="box">
+      <div class="carousel">
+        <img
+          id="img"
+          src="https://www.invoicera.com/wp-content/uploads/2023/11/default-image.jpg"
+        />
+      </div>
+      <div class="btn" id="prev"><img src="./prev.svg" alt="" /></div>
+      <div class="btn" id="next"><img src="./next.svg" alt="" /></div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <!-- 圖片來源 -->
+    <script src="./carousel-data.js"></script>
+    <script>
+      $(function () {
+        // 設定一個變數在儲存顯示第幾張圖
+        let page = 0;
+
+        $("#img").attr("src", data[0].url).attr("alt", data[0].name);
+
+        // 將按鈕設定 click 觸發的 function
+        $("#prev").on("click", prevPage);
+        $("#next").on("click", nextPage);
+
+        function prevPage() {
+          // 【 < 】按鈕被點擊時，先判斷目前是險是第幾張圖
+          // 如果目前的張數 -1 會小於 0 那就讓圖片變成最後一張圖片 (也就是4)
+          // 如果目前的張數 -1 不會小於 0 代表還有上一張圖可以顯示
+          if (page - 1 < 0) {
+            page = data.length - 1;
+          } else {
+            page = page - 1;
+          }
+          // 重新設定圖片
+          $("#img").attr("src", data[page].url).attr("alt", data[page].name);
+        }
+
+        function nextPage() {
+          // 【 > 】按鈕被點擊時，先判斷目前是險是第幾張圖
+          // 如果目前的張數 +1 會大於 4 那就讓圖片變成第一張圖片 (也就是0)
+          // 如果目前的張數 +1 不會大於 4 代表還有下一張圖可以顯示
+          if (page + 1 > data.length - 1) {
+            page = 0;
+          } else {
+            page = page + 1;
+          }
+
+          // 重新設定圖片
+          $("#img").attr("src", data[page].url).attr("alt", data[page].name);
+        }
+      });
+    </script>
+    <script src="./navbar.js"></script>
+  </body>
+</html>

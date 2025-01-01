@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>彈跳視窗</title>
+    <link rel="stylesheet" href="./nav.css" />
+    <style>
+      .alert {
+        border: 1px solid;
+        width: 400px;
+        display: flex;
+        position: relative;
+        border-radius: 10px;
+      }
+      .alert p {
+        margin: 30px;
+      }
+      .alert button {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        border: none;
+        font-size: 26px;
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        padding: 0;
+        border-radius: 5px;
+        background-color: white;
+        border: 1px solid rgb(202, 202, 202);
+      }
+      .alert-question {
+        border-color: gray;
+        color: gray;
+        background-color: rgb(245, 245, 245);
+      }
+      .alert-success {
+        border-color: green;
+        color: green;
+        background-color: rgb(220, 255, 220);
+      }
+      .alert-error {
+        border-color: red;
+        color: red;
+        background-color: rgb(255, 203, 203);
+      }
+      .alert-warning {
+        border-color: orange;
+        color: orange;
+        background-color: #ffeac4;
+      }
+    </style>
+  </head>
+  <body>
+    <nav></nav>
+    <div class="alert alert-question">
+      <p>確認是否執行動作訊息。</p>
+      <button class="close">×</button>
+    </div>
+    <hr />
+    <div class="alert alert-success">
+      <p>成功訊息。</p>
+      <button class="close">×</button>
+    </div>
+    <hr />
+    <div class="alert alert-error">
+      <p>錯誤訊息。</p>
+      <button class="close">×</button>
+    </div>
+    <hr />
+    <div class="alert alert-warning">
+      <p>警示訊息。</p>
+      <button class="close">×</button>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        $("button").on("click", function () {
+          $(this).parent().remove();
+        });
+      });
+    </script>
+    <script src="./navbar.js"></script>
+  </body>
+</html>

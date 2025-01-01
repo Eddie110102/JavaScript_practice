@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI</title>
+    <link rel="stylesheet" href="./nav.css" />
+  </head>
+  <body>
+    <nav></nav>
+    <h1>讓使用者可以輸入自己的體重及身高，根據算出來的BMI値顯示下列訊息</h1>
+    <hr />
+    <label
+      >身高（公分）：<input type="number" name="userHeight" id="height"
+    /></label>
+    <label
+      >體重（公斤）：<input type="number" name="userWeight" id="weight"
+    /></label>
+    <button id="enter">送出</button>
+    <div>您的BMI值為<span id="bmiValue"></span>，<span id="result"></span></div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        // 事件聆聽
+        $("#enter").on("click", function () {
+          let bmiResult = translateBMI($("#weight").val(), $("#height").val());
+          $("#bmiValue").text(bmiResult);
+          let res = isOverWeight(bmiResult);
+          $("#result").text(res);
+        });
+
+        // 轉換 BMI數值 .pow() => 求平方值； .floor() => 求數字的最大整數
+        function translateBMI(a, b) {
+          // Math.pow(基數,指數) 基數=>要被計算的數字，指數=>將基數以平方/次方...等方式計算
+          // 為了要求小數點後兩位，所以先將 BMI公式(a / Math.pow(b / 100, 2))乘上100 後使用 floor()將小數點後的數字都去掉，再除以100就會得到小數點兩位的結果
+          let bmi = Math.floor((a / Math.pow(b / 100, 2)) * 100) / 100;
+          return bmi;
+        }
+
+        function isOverWeight(a) {
+          let status = "";
+          if (a < 18.5) {
+            status = "過輕";
+          } else if (a >= 18.5 && a < 24) {
+            status = "正常";
+          } else if (a >= 24 && a < 27) {
+            status = "過重";
+          } else if (a >= 27 && a < 30) {
+            status = "輕度肥胖";
+          } else if (a >= 30 && a < 35) {
+            status = "中度肥胖";
+          } else {
+            status = "重度肥胖";
+          }
+          return status;
+        }
+      });
+    </script>
+    <script src="./navbar.js"></script>
+  </body>
+</html>

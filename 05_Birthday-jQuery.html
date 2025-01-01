@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生日計算機</title>
+    <link rel="stylesheet" href="./nav.css" />
+  </head>
+  <body>
+    <nav></nav>
+    <h1>讓使用者輸入生日計算目前幾歲</h1>
+    <hr />
+    <label
+      >請輸入生日：<input type="date" id="userBirthday" value="2000-01-01"
+    /></label>
+    <div id="result"></div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        $("#userBirthday").on("input", function () {
+          $("#result").text(translate($(this).val()));
+        });
+
+        function translate(a) {
+          // 公式 : 今天日期 - 出生日期 / 1年(毫秒)  1000 * 60 * 60 * 24 * 365.25 => 含每四年有一個閏年 所以要加0.25天的時間
+          return `您目前為 ${((new Date() - new Date(a)) / 31557600000).toFixed(
+            1
+          )} 歲`;
+        }
+      });
+    </script>
+    <script src="./navbar.js"></script>
+  </body>
+</html>

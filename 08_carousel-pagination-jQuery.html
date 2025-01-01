@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel 輪播牆</title>
+    <link rel="stylesheet" href="./nav.css" />
+    <style>
+      .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .slider {
+        width: 600px;
+        height: 300px;
+        border: 1px solid black;
+        overflow: hidden;
+      }
+      .sliderCollect {
+        width: inherit;
+        height: inherit;
+        display: flex;
+        transition: 0.4s;
+      }
+      .slider img {
+        min-width: 600px;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      .dotBox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border: 1px solid gray;
+        border-radius: 50%;
+        margin: 10px;
+        cursor: pointer;
+      }
+      .dot.checked {
+        background-color: gray;
+      }
+
+      /* 按鈕 */
+      .btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 50px;
+        margin: 30px;
+        cursor: pointer;
+      }
+      .btn img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      #left {
+        order: -10;
+      }
+    </style>
+  </head>
+  <body>
+    <nav></nav>
+    <div class="box">
+      <div class="slider">
+        <div class="sliderCollect"></div>
+      </div>
+      <div class="btn" id="left"><img src="./prev.svg" alt="" /></div>
+      <div class="btn" id="right"><img src="./next.svg" alt="" /></div>
+    </div>
+    <div class="dotBox"></div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <!-- 圖片來源 -->
+    <script src="./carousel-data.js"></script>
+    <script>
+      $(function () {
+        $(data).each(function (i, d) {
+          // 新增圖片
+          $(".sliderCollect").append(`<img src="${d.url}" alt="${d.name}" />`);
+          // 新增dot
+          $(".dotBox").append(`<div></div>`);
+          $(".dotBox").children().addClass("dot").eq(0).addClass("checked");
+        });
+
+        let index = 0;
+        $("#left").on("click", function () {
+          if (index - 1 < 0) {
+            index = data.length - 1;
+          } else {
+            index = index - 1;
+          }
+          change(index);
+        });
+        $("#right").on("click", function () {
+          if (index + 1 > data.length - 1) {
+            index = 0;
+          } else {
+            index = index + 1;
+          }
+          change(index);
+        });
+
+        function change(index) {
+          $(".sliderCollect").css("transform", `translateX(-${index}00%)`);
+          $(".dot")
+            .eq(index)
+            .addClass("checked")
+            .siblings()
+            .removeClass("checked");
+        }
+
+        $(".dot").on("click", function () {
+          index = $(this).index();
+          change(index);
+        });
+      });
+    </script>
+    <script src="./navbar.js"></script>
+  </body>
+</html>

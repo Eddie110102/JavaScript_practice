@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>溫度轉換</title>
+    <link rel="stylesheet" href="./nav.css" />
+  </head>
+  <body>
+    <nav></nav>
+    <h1>
+      請設計一個
+      function，傳入攝氏溫度可以轉成華氏溫度，傳入華氏溫度可以轉成攝氏溫度
+    </h1>
+    <hr />
+    <label>
+      <select name="unit" id="unit">
+        <option value="c">攝氏（℃ ）</option>
+        <option value="f">華氏（℉ ）</option>
+      </select>
+    </label>
+    <input type="text" id="temperature" value="0" />
+    <div id="result"></div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        // 輸入溫度時會自動計算
+        $("#temperature").on("input", function () {
+          refresh($(this).val(), $("#unit").val());
+        });
+
+        // 改變溫度單位時會自動計算
+        $("#unit").on("change", function () {
+          refresh($("#temperature").val(), $(this).val());
+        });
+
+        function refresh(a, b) {
+          $("#result").text(translate(a, b));
+        }
+
+        //  .toFixed(n) 取小數點到第n位，四捨五入
+        function translate(a, b) {
+          let res = "請輸入數字";
+          switch (b) {
+            case "c":
+              res = `華氏溫度為 ${((a * 9) / 5 + 32).toFixed(2)} ℉`;
+              break;
+            case "f":
+              res = `攝氏溫度為 ${(((a - 32) * 5) / 9).toFixed(2)} ℃ `;
+              break;
+            default:
+              res = "請輸入數字";
+              break;
+          }
+          return res;
+        }
+      });
+    </script>
+    <script src="./navbar.js"></script>
+  </body>
+</html>

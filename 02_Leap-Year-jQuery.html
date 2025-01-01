@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>閏年</title>
+    <link rel="stylesheet" href="./nav.css" />
+  </head>
+  <body>
+    <nav></nav>
+    <h1>判斷是否是閏年</h1>
+    <hr />
+    <label
+      >輸入西元年：<input type="number" name="inputYear" id="year"
+    /></label>
+    <button id="enter">送出</button>
+    <div>結果：<span id="result"></span></div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        $("#enter").on("click", function () {
+          $("#result").text(checkYear($("#year").val()));
+        });
+
+        function checkYear(a) {
+          let res = `${a}為平年`;
+          // % => 求於數
+          if (a % 400 === 0 || (a % 4 === 0 && a % 100 > 0)) {
+            res = `${a}為閏年`;
+          }
+          return res;
+        }
+      });
+    </script>
+    <script src="./navbar.js"></script>
+  </body>
+</html>
