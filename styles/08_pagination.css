@@ -3,18 +3,39 @@
   align-items: center;
   justify-content: center;
 }
-.carousel {
+.slider {
   width: 600px;
   height: 300px;
   border: 1px solid black;
   overflow: hidden;
 }
-
-.carousel img {
-  width: 100%;
+.sliderCollect {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  transition: 0.4s;
+}
+.slider img {
+  min-width: 600px;
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+.dotbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border: 1px solid gray;
+  border-radius: 50%;
+  margin: 10px;
+  cursor: pointer;
+}
+.dot.checked {
+  background-color: gray;
 }
 
 /* 按鈕 */
@@ -33,6 +54,7 @@
   height: 100%;
   object-fit: contain;
 }
-#prev {
+
+#left {
   order: -10;
 }

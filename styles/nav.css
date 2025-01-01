@@ -1,80 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-*{
-    font-family: 'Roboto','Noto Sans TC';
+* {
+  font-family: "Roboto", "Noto Sans TC";
 }
-body{
-    margin: 0;
+body {
+  margin: 0;
 }
-.container{
-    display: flex;
+.container {
+  display: flex;
 }
-.container>div{
-    padding: 20px;
-    flex-grow: 1;
+.container > div {
+  padding: 20px;
+  flex-grow: 1;
 }
-nav{
-    background-color: #666;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px;
-    row-gap: 10px;
-    
-    flex-basis: 250px;
-    flex-shrink: 0;
-    height: 100vh;
-    overflow: auto;
-}
+nav {
+  background-color: #666;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  row-gap: 10px;
 
-.btnBox{
-    display: flex;
-    justify-content: center;
-    border: 2px solid black;
-}
-.btnBox>div{
-    width: 50%;
-    background-color: white;
-    text-align: center;
-    cursor: pointer;
-    padding: 10px;
-}
-.btnBox>div.active{
-    background-color: lightgreen;
+  flex-basis: 250px;
+  flex-shrink: 0;
+  height: 100vh;
+  overflow: auto;
 }
 
-.navBox{
-    display: flex;
-    flex-direction: column;
+.btnBox {
+  display: flex;
+  justify-content: center;
+  border: 2px solid black;
+}
+.btnBox > div {
+  width: 50%;
+  background-color: white;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+}
+.btnBox > div.active {
+  background-color: lightgreen;
+}
+
+.navBox {
+  display: flex;
+  flex-direction: column;
 }
 
 .navBox a {
-    text-decoration: none;
-    color: black;
-    padding: 10px;
-
+  text-decoration: none;
+  color: black;
+  padding: 10px;
 }
-.navBox a:hover{
-    color: gray;
-    background-color: #fff;
-}
-
-.navBox a.active{
-    background-color: lightgreen;
-    color: black;
+.navBox a:hover {
+  color: gray;
+  background-color: #fff;
 }
 
-.navBox .source{
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    background-color: black;
-    width: 100px;
-    height: 100px;
-    padding: 0;
-    text-align: center;
-    line-height: 100px;
-    border-radius: 50%;
-    border: 1px solid black;
-    color: white;
+.navBox a.active {
+  background-color: lightgreen;
+  color: black;
+}
+
+.navBox .source {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background-color: black;
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  text-align: center;
+  line-height: 100px;
+  border-radius: 50%;
+  border: 1px solid black;
+  color: white;
 }
